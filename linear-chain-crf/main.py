@@ -11,7 +11,7 @@ from bilstm_crf import BiLSTM_CRF
 
 # for reproducibility
 torch.manual_seed(1)
-
+import pdb
 
 def get_word_and_tag_vocab(training_data):
     word_to_ix = {
@@ -84,8 +84,12 @@ if __name__ == "__main__":
     # mask tensor with shape (batch_size, max_sent_size)
     mask = (x_tags != Const.PAD_TAG_ID).float()
 
+    # pdb.set_trace()                   
+
     # get a reversed dict mapping int to str
     ix_to_tag = {ix: tag for tag, ix in tag_to_ix.items()}
+
+    pdb.set_trace()
 
     # see bilstm_crf.py
     model = BiLSTM_CRF(len(word_to_ix), len(tag_to_ix))
